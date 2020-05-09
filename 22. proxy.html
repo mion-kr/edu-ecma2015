@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*Proxy는 오브젝트가 있을 때
+        오브젝트를 가로채서 별도의 일을 할 수 있다.
+        (추가, 변경, 삭제 시 부수적인 일들을 할 수 있다.) 등
+        (자바로치면 인터셉터 기능인데 오브젝트 단위로 함)
+        */
+
+        console.log("-----myObj------");
+        const myObj = {name:'kjy'};
+        
+        const proxy = new Proxy(myObj, {});//오브젝트, 핸들러 값
+
+        console.log(proxy.name); // kjy
+
+        proxy.name = 'jisu';
+        console.log(proxy.name); // jisu
+
+        console.log(toString.call(proxy)); // object Object
+        
+        //그냥 myObj를 맵핑한 것과 같다.
+        
+        console.log(proxy.name == myObj.name); // true
+
+
+        /*핸들러 추가*/
+        console.log("-----myObj2------");
+        const myObj2 = {name : 'kjy', chagnedValue : 0};
+        const proxy2 = new Proxy(myObj2,{
+            //여기서 target 파라미터는 myObj2를 가리킨다.
+            get : function(target,key,receiver){
+                    console.log(target,key,receiver); 
+                    return target[key];
+                },
+            set : function(target,key,val,receiver){
+                    console.log('change value ',target,key,val,receiver);
+                    target['chagnedValue']++;
+                    target[key] = val;
+                }
+        });
+
+        proxy2.name="하하핳";
+        
+        console.log(proxy2.name);
+        proxy2.name="crong";
+        proxy2.name="ysm";
+        
+        console.log(proxy2); // 변경회수 3
+        
+        // 주의! myObj2에서 값을 바꾸면 proxy 사용하지 않아 카운트되지 않는다.
+        myObj2.name="KJY";
+        
+        console.log(myObj2); // 변경회수 3
+
+
+        console.log("-----myObj3------");
+        //그렇기 때문에 myObj2를 감추고 proxy로만 사용하는 방법이 있다.
+        const proxy3 = new Proxy({name: "kjy", chagnedValue : 0}, {
+            get : (target, key, receiver)=>{
+                console.log("감추기 get"); 
+                // return target[key];
+                // return Reflect.get(target,key); // 이걸 좀 더 권장한다.
+                return (key in target) ? target[key] : "anonymous"; //값이 없으면 default 값으로 anonymous
+            }
+            , set : (target, key, value, receiver)=>{target['chagnedValue']++; target[key] = value;}
+        })
+
+        proxy3.name="1"
+        proxy3.name="2"
+        proxy3.name="3"
+
+        console.log(proxy3);
+        
+        console.log(proxy3.age); // default 값 출력
+
+
+
+    </script>
+</body>
+</html>

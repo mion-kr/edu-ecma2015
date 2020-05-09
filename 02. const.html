@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+         기본적으로 const로 선언하고
+         재할당이 된다면 let을 사용한다.
+         var는 사용하지 않는다.
+        */
+        const list = ["apple", "orange", "watermelon"];
+        list.push("banana");
+        console.log(list);
+        //const를 사용하더라도 배열과 오브젝트의 값을 변경하는 것은 가능하다.
+        //즉. 재할당하는 코드만 불가능하다.
+
+        console.log("-----------------");
+
+        /*immutable array를 만드는 방법*/
+        const list2 = ["apple", "orange", "watermelon"];
+        list3 = [].concat(list2,"banana");
+        console.log(list2, list3);//결과를 보면 list2의 값은 온전히 그대로 있다.
+        list3.shift();
+        console.log(list2, list3);//결과를 보면 list2의 값은 온전히 그대로 있다.
+    </script>
+</body>
+</html>

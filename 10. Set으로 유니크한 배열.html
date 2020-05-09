@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // set : 중복 없이 유일한 값을 저장하려고 할 때, 이미 존재하는지 체크할 때 유용
+        let mySet = new Set();
+        console.log(toString.call(mySet)); //object Set 타입
+
+        mySet.add("crong");
+        mySet.add("hary");
+        mySet.add("crong");
+
+        console.log(`mySet.has("crong") : ${mySet.has("crong")}`); //존재 유무 확인
+
+
+        mySet.delete("crong"); // 삭제도 있다
+
+        mySet.forEach(function(value){//set도 forEach가 있다.
+            console.log(value); // 중복된 값이 한 번만 나온다.
+        });
+
+
+        //Array -> Set 변환하는 방법은? new Set(배열)
+        const arr = [100,200,300,300,400,500,5,600,6,6];
+        const arrSet = new Set(arr);
+        console.log(arrSet);
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Destructuring and Set 활용
+
+            로또 번호 만들기
+            1. 유일한 값을 추출하는 과정에서 Set을 사용한다.
+            2. getRandomNumber 함수에 변수를 전달하는 과정에서 Destructuring
+               사용한다.
+        */
+
+        const SETTING = {
+            name : "LUCKY LOTTO",
+            count : 6,
+            maxNumber : 45
+        };
+        
+        function getRandomNumber({maxNumber, count}){
+            const lottoSet = new Set();
+            for(; lottoSet.size < count;){
+                lottoSet.add( Math.floor( (maxNumber-1) * Math.random() ) + 1 );
+            }
+            return lottoSet;
+        }
+
+        // console.log(...lottoSet);
+        console.log(getRandomNumber(SETTING));
+
+
+    </script>
+</body>
+</html>

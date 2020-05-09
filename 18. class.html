@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //기존 방식
+        function Health(name){       
+            this.name = name;
+        }
+        Health.prototype.showHealth = function(){
+            console.log(this.name + "님 안녕하세요");
+        }
+
+        const h = new Health("김종윤");
+        h.showHealth();
+
+        //기존 방식을 es6의 class로 표현한 것이다. 동일한 코드이다.
+        class Health2{
+            constructor(name){
+                this.name = name;
+            }
+            
+            showHealth(){
+                console.log("안녕하세요 "+ this.name+"님");
+            }
+        }
+        
+        const myHealth = new Health2("김종윤");
+        myHealth.showHealth();
+        
+        //모습은 class이나 실제는 function이다. 찍으면 prototype 이있다.
+        console.log(Health2);
+        console.log(toString.call(Health2)); // [object Function]
+
+
+
+    </script>
+</body>
+</html>

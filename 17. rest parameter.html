@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //여러 개 파라미터에서 모든 파라미터가 숫자인지 체크하는 함수 구현
+        //es3에서의 구현
+        function checkNum(){
+            // arguments가 가짜배열이기 때문에 배열관련 함수를 사용하기 위해 아래같이 변경
+            const argArray = Array.from(arguments); 
+            console.log(toString.call(argArray)); // 타입 출력
+
+            //every 뒤에 오는 모든 조건이 true 이면 true 반환
+            const result = argArray.every( (v) => typeof v === "number");
+            console.log(result);
+
+        }
+        //es6에서의 구현
+        function checkNum2(...argArray){// 스프레이드 형식으로 쓰면 진짜배열이 ??
+            console.log(toString.call(argArray)); //배열값으로 뜸!
+            const result = argArray.every( v => typeof v === "number");
+            console.log(result);
+        }
+
+        const result = checkNum(1,2,3,4,5,"55");
+        console.log("------------------");
+        const result2 = checkNum2(1,2,3,4,5,"55");
+        // const result = checkNum(1,2,3,4,5,55);
+    </script>
+</body>
+</html>

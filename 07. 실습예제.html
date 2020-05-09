@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>apple</li>
+        <li>orange</li>
+        <li>banana</li>
+        <li>strawberry</li>
+
+    </ul>
+    <script>
+        /*filter, includes, from을 사용하여 문자열 'e'가 포함된 노드로 된 배열 반환하기
+            배열객체.filter()
+            문자열.includes()
+            Array.from()
+        */    
+        function ex1(){
+            let liArr = document.querySelectorAll("li");
+            liArr = Array.from(liArr); // 유사 배열을 배열로
+            return liArr.filter((val)=>{ // 배열 필터로 e가 들어간 요소 찾아냄
+                    return val['outerText'].includes('e');
+                    });
+        }
+        
+        console.log(ex1());
+
+        /*reduce 사용하기*/
+        function my1(){
+            let liArr = document.querySelectorAll("li");
+            liArr = Array.from(liArr);
+
+            return liArr.reduce((result, cur, idx, p)=>{
+                if(cur.innerText.includes("e")) result.push(p[idx]);
+                return result;
+            }, []);
+        }
+
+        console.log(my1());
+    </script>
+</body>
+</html>

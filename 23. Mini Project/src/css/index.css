@@ -1,0 +1,56 @@
+#blogBtn{    
+    width: 200px;
+    height: 50px;
+    font-weight: 600;
+    background: linear-gradient(to bottom, rgb(133, 181, 230), rgb(141, 73, 73));
+}
+#blogList{
+    padding:20px;
+}
+#blogList > div{
+    float: left;
+    width:200px; 
+    height:200px; 
+    border: 2px solid gray;
+    margin: 20px;
+    padding: 10px;
+}
+
+#blogList > div > div:first-child{
+    height:184px;
+}
+
+.like{
+    clear:both;
+    width: 48px;
+    color: #6e9a42;
+}
+
+.like:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.unlike{
+    color: #e28315;
+}
+
+.unlike:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#likeList{
+    clear:both;
+}
+
+a{
+    text-decoration: none;
+}
+a:link{
+    text-decoration: none;
+}
+a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

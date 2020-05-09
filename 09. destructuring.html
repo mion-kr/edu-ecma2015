@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>my div</div>
+    <script>
+        /*Destructuring 기능은 ES6에서 꽤 유용한 기능*/
+
+        /*1) 배열에서의 사용*/
+        let data = ["crong", "honux", "jk", "jinny"];
+        let [jisu,,jung] = data; //2번째는 비움
+        console.log(jisu,jung);//0,2번째 인덱스 값만 나옴(crong, jk)
+
+        console.log("----------------");
+
+        /*2) 오브젝트에서의 사용*/
+        let obj = {
+            name : "crong",
+            address : "Korea",
+            age : 10,
+            son : {
+                    name : "jk",
+                    age : 28,
+                    address : "America"}
+        };
+        console.log(obj['name'], obj['age'], obj['son'])//기존에 내가 사용하던 방법
+
+        let {name, age, son} = obj; //Destructuring
+        console.log(name,age,son);
+
+        let {name:myName, age:myAge} = obj; // 이름을 바꿔서 출력할 수 있음
+        console.log(myName, myAge);
+        
+        console.log("----------------");
+
+
+        /*3) JSON 파싱*/
+        const news = [
+            {
+                "title" : "sbs",
+                "imgurl" : "https://static.naver.net/",
+                "newslist" : [
+                    "가상 경주도 즐기고, 내 손으로 자동차도 만들고",
+                    "리캡차가 사라진다",
+                    "블로코-삼성SDS"
+                ]
+            },
+            {
+                "title" : "mbs",
+                "imgurl" : "https://static.daum.net/",
+                "newslist" : [
+                    "기사 첫 줄",
+                    "기사 2 줄",
+                    "기사 셋 줄"
+                ]
+            }
+        ];
+
+        //기본적인 방법
+        // let [,mbc] = news;
+        // let {title, imgurl} = mbc;
+        // console.log(mbc, title, imgurl);
+
+        //응용 방법. 한 번에 데이터 뽑기
+        let [,{title,imgurl}] = news;
+        console.log(title, imgurl);
+
+        //function 매개변수에서 활용
+        function getNewsList([,{newslist}]){
+            console.log(newslist);
+        }
+        getNewsList(news);
+
+
+        /*4) 이벤트 객체 전달*/
+        document.querySelector("div").addEventListener("click", function({target, type}){//여기 매개변수에서도 사용 가능
+            //필요한 타입만 사용하기(target, type)
+            console.log(target.tagName, target.innerText, type);
+        });
+
+    </script>
+</body>
+</html>

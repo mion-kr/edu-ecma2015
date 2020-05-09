@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var data = [1,2,undefined,NaN,null,""];
+
+        //for
+        console.log(`----------for----------`);
+        for(var i=0; i<data.length; i++){
+            console.log(`for values: ${data[i]}`);
+        }
+        
+        console.log(`----------forEach----------`);
+        //forEach
+        data.forEach(function(value){
+            console.log(`forEach values: ${value}`);
+        });
+        
+        console.log(`----------for in----------`);
+        //for in
+        /*
+        for in은 문제가 있음
+        자기 자신이 갖고 있지 않는 상속받은 값들도 출력 됨
+        */
+       Array.prototype.getIndex = function(){};
+       for(key in data){
+           console.log(`for in values: ${data[key]}`);
+        }
+        
+        console.log(`----------for of----------`);
+        //for of
+        /*
+            이건 상속 받은게 안나옴
+            [Symbol.iterator] 속성을 가지는 컬렉션 전용
+        */
+        for(let value of data){
+            console.log(`for of values: ${value}`);
+        }
+
+        /*for of는 배열만을 위한게 아님*/
+        let str = "hello world";
+        for(value of str){
+            console.log(`str value:${value}`);
+        }
+    </script>
+</body>
+</html>

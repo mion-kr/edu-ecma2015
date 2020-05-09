@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var tt = class {
+            constructor(name){
+                this.name = name;
+            }
+
+            get Name(){
+                return "My Name is : "+this.name;
+            }
+
+            set Name(name){
+                this.name = "update: "+name;
+            }
+        }    
+
+        let t = new tt("asdf");
+        console.log(t);
+        console.log(t.Name);
+        t.Name = "KJY";
+        console.log(t.Name);
+
+        let a = "ABC";
+        let b = "123";
+        let str = `Alpabet ${a}, Number ${b}`;
+        console.log(str);
+    </script>
+</body>
+</html>

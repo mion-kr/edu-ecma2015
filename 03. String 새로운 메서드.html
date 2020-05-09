@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = "hello world ! ^^ ~~";
+        //hello로 시작하는 문자열인지 확인하려면?
+
+        let matchstr = "^^ ~~";
+        //startsWith
+        console.log(`str.startsWith(${matchstr}) : ${str.startsWith(matchstr)}`); // false
+        console.log(`str.endsWith(${matchstr}) : ${str.endsWith(matchstr)}`); // ture
+        console.log(`str.includes(world) : ${str.includes("world")}`); // true (포함되어있는지)
+        
+    </script>
+</body>
+</html>

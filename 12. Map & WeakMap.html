@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            오브젝트에 대한 추가적인 정보가 필요할 때
+    
+            Array -> Set, WeakSet
+            Object -> Map, WeakMap
+    
+            map은 key/value 구조
+        */
+
+        let wm = new WeakMap();
+        let myFunc = function () { };
+        //이 함수가 얼마나 실행됐지?를 알려고할 때(흔하지 않음);
+        wm.set(myFunc, 0);
+
+        console.log(wm);
+
+        let count = 0;
+        for (let i = 0; i < 10; i++) {
+            count = wm.get(myFunc); // get value
+            count++;
+            wm.set(myFunc, count);
+        }
+
+        console.log(wm); // count = 10
+
+        myFunc = null;
+
+        console.log(wm); // WeakSet과 마찬가지로 보이는데 실제 값은 없음
+        console.log(wm.has(myFunc)); // false;
+
+        console.log("----------------------"); // false;
+
+
+        /*WeakMap 활용하여 인스턴스 변수 보호하기*/
+
+        const wm2 = new WeakMap();
+
+        /*프로토타입의 객체 생성*/
+        // function Area(height,width){
+        //     this.height = height,
+        //     this.width = width
+        // }
+        // Area.prototype.getArea = function(){
+        //     return this.height * this.width;
+        // }
+
+        /*WeakMap 활용하기*/
+        function Area(height, width) {
+            wm2.set(this, { height, width }); // 단점 클래스 밖에 전역공간에 변수를 저장함.
+        }
+        Area.prototype.getArea = function () {
+            const { height, width } = wm2.get(this);
+            return height * width;
+        }
+
+        let myArea = new Area(10, 20);
+        console.log(`myArea.getArea() : ${myArea.getArea()}`);
+        console.log(`myArea.width : ${myArea.width}`); // 
+
+    </script>
+</body>
+
+</html>

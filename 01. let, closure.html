@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul>
+        <li>javascript</li>
+        <li>java</li>
+        <li>python</li>
+        <li>django</li>
+
+    </ul>
+    <script>
+        var list = document.querySelectorAll("li");
+
+        // for(var i=0; i<list.length; i++){
+        for(let i=0; i<list.length; i++){
+            //var로 선언하면 클로져를 통해 이벤트 함수에서 4개의 리스트가 모두 i값을 공유/참조 한다.
+            //출력하면 4번째 리스트로 나오는데 이 문제는 var를 let으로 선언하면 해결된다.
+
+            list[i].addEventListener("click", function(){
+                console.log(`${i} 번째 리스트 입니다.`);
+            });
+        }
+    </script>
+</body>
+</html>

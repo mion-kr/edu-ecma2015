@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const name = "crong";
+        const age = 28;
+
+        /*기존 오브젝트 사용 방법 1*/
+        const obj = {
+            name : name,
+            age : age
+        }
+
+        /*기존 오브젝트 사용 방법(오브젝트 리터럴 방식) 2*/
+        function getObj(){
+            const name = "crong";
+
+            const getName = function(){
+                return name;
+            }
+
+            const setName = function(newName){
+                name = newName;
+            }
+
+            const printName = function(){
+                console.log(name);
+            }
+
+            // return {
+            //     getName : getName,
+            //     setName : setName
+            // }
+            return {getName, setName} // 이름과 키 값이 같다면 하나로 해도 됨(ES6에서 지원)
+            
+        }
+
+        var obj2 = getObj();
+        console.log(obj2); 
+        console.log(obj2.getName()); 
+
+        /*아래처럼 리터럴 방식으로 오브젝트 선언 가능*/
+        const data = {
+            name,
+            getName(){
+                console.log(name);
+            }
+        }
+
+        console.log(data);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    const healthObj = {
+        showhealth(){
+            console.log("오늘 운동 시간 : "+this.healthTime);
+        },
+        setHealth : function(newTime){
+            this.healthTime = newTime;
+        }
+    }
+
+    const myHealth = {
+        name : "KJY",
+        lastTime : "11:20"
+    }
+
+    //myHealth 객체 프로토타입에 healthObj 추가
+    Object.setPrototypeOf(myHealth, healthObj);
+    console.log(myHealth)
+
+    </script>
+</body>
+</html>

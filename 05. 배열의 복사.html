@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //spread operator, 펼침 연산자
+        let pre = ["apple", "orange", 100];
+        let newData = [...pre];
+        console.log(`pre: ${pre}, newData : ${newData}`); // pre값이 2번 출력 됨
+        console.log(`pre === newData : ${pre === newData}`); // 그렇다고 참조가 같진 않음(복사)
+        
+        console.log("-----------------");
+        
+        //객체에서도 사용가능
+        let obj = {"key" : 1, "tall" : 183.8};
+        let obj2 = {...obj};
+        console.log(`obj : ${obj}, obj2 : ${obj2}`); 
+        console.log(`obj === obj2 : ${obj === obj2}`); // false
+        console.log("-----------------");
+
+
+        //몇 가지 활용
+        //1) 끼워넣기
+        let pre2 = [100,200,"hello", null];
+        let newData2 = [0,1,2,3, ...pre2, 4];
+        console.log(`끼워넣기 : ${newData2}`);
+
+        //2) 파라미터로 전송가능
+        function sum(a,b,c){
+            return a+b+c;
+        }
+        let pre3 = [100,200,300];
+        
+        //기존
+        console.log(`apply 활용 : ${sum.apply(null,pre3)}`);
+        //spread operator 활용
+        console.log(`spread : ${sum(...pre3)}`);
+        
+
+    </script>
+</body>
+</html>
